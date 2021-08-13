@@ -1,13 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react'
+import { loadStripe } from '@stripe/stripe-js'
 
 import AppContext from '../contexts/appContext';
 
-import { loadStripe } from '@stripe/stripe-js'
-
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-// import { Dialog, Transition } from '@headlessui/react'
-// import { XIcon } from '@heroicons/react/outline'
 
 export default function Cart() {
 	const [cartItems, setCartItems] = useContext(AppContext);
@@ -30,6 +27,7 @@ export default function Cart() {
   }
 
 	const removeFromCart = (idx) => {
+		console.log('in remove...', idx, cartItems)
 		setCartItems(
 			cartItems.filter((_value, index, _arr) => {
 				return idx != index 
@@ -60,7 +58,7 @@ export default function Cart() {
 											</h3>
 											<p className="ml-4">${product.price}</p>
 										</div>
-										<p className="mt-1 text-sm text-gray-500">{product.color}</p>
+										<p className="mt-1 text-sm text-gray-500 capitalize">{product.color}</p>
 									</div>
 									<div className="flex-1 flex items-end justify-between text-sm">
 										{/* <p className="text-gray-500">Qty {product.quantity}</p> */}

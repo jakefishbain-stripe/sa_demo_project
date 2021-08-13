@@ -10,7 +10,6 @@ import AppContext from '../contexts/appContext'
 
     const addToCart = (product) => {
         setCartItems([...cartItems, product])
-        console.log('cartItems in shop', cartItems)
     }
 
     return (
@@ -36,7 +35,7 @@ import AppContext from '../contexts/appContext'
                             {product.name}
                         </a>
                         </h3>
-                        <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                        <p className="mt-1 text-sm text-gray-500 capitalize">{product.color}</p>
                     </div>
                     <p className="text-sm font-medium text-gray-900">${product.price}</p>
                     </div>

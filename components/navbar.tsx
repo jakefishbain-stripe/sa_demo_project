@@ -121,13 +121,16 @@ export default function Navbar() {
                   ) : (
                     <a
                       key={item}
-                      href="#"
+                      href={item.toLowerCase()}
                       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     >
                       {item}
                     </a>
                   )
                 )}
+                <a href="/cart" className="text-white block px-3 py-2 rounded-md text-base font-medium">
+                  Checkout
+                </a>
               </div>
             </Disclosure.Panel>
           </>
