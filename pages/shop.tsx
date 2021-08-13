@@ -9,10 +9,8 @@ import AppContext from '../contexts/appContext'
     const [cartItems, setCartItems] = useContext(AppContext);
 
     const addToCart = (product) => {
-        // cartItems.push(product)
         setCartItems([...cartItems, product])
         console.log('cartItems in shop', cartItems)
-        
     }
 
     return (
@@ -24,11 +22,11 @@ import AppContext from '../contexts/appContext'
                 {products.map((product) => (
                   <div key={product.id} className="group relative">
                     <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    {/* <Image
+                    <img
                         src={product.imageSrc}
                         alt={product.imageAlt}
                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                    /> */}
+                    />
                     </div>
                     <div className="mt-4 flex justify-between" onClick={() => addToCart(product)}>
                     <div>

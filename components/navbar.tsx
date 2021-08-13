@@ -1,41 +1,38 @@
+/* eslint-disable @next/next/no-img-element */
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useContext }from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
-import { loadStripe } from '@stripe/stripe-js'
+// import { loadStripe } from '@stripe/stripe-js'
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 
 import AppContext from '../contexts/appContext'
 
-const navigation = ['Home', 'Shop', 'Sell' , 'Checkout']
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+const navigation = ['Home', 'Shop', 'Sell']
 
 export default function Navbar() {
   const [cartItems, setCartItems] = useContext(AppContext);
 
-  const checkout = async (items) => {
-    const { sessionId } = await fetch('api/checkout/session', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(items)
-    }).then(res => res.json());
+  // const checkout = async (items) => {
+  //   const { sessionId } = await fetch('api/checkout/session', {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify(items)
+  //   }).then(res => res.json());
 
-    const stripe = await stripePromise;
+  //   const stripe = await stripePromise;
 
-    const { error } = await stripe.redirectToCheckout({
-        sessionId
-    });
-  }
+  //   const { error } = await stripe.redirectToCheckout({
+  //       sessionId
+  //   });
+  // }
 
   return (
     <div>
@@ -45,13 +42,13 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-16">
                 <div className="flex items-center">
+                  <a href="/">
                   <div className="flex-shrink-0">
-                    {/* <Image
-                      className="h-8 w-8"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                      alt="Workflow"
-                    /> */}
+                    <button className="inline-flex items-center justify-center w-10 h-10 mr-2 text-white transition-colors duration-150 bg-yellow-500 rounded-full focus:shadow-outline hover:bg-yellow-600">
+                      S
+                    </button>
                   </div>
+                  </a>
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
@@ -65,7 +62,7 @@ export default function Navbar() {
                             </Link>
                           </Fragment>
                         ) : (
-                          <Link href={item.match(/\w+/g)[0].toLowerCase()}>
+                          <Link href={item.toLowerCase()}>
                             <a
                               key={item}
                               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -82,42 +79,20 @@ export default function Navbar() {
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
                       <Menu.Button className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white">
-                        <span className="sr-only">View notifications</span>
+                        {/* <span className="sr-only">View notifications</span> */}
                         {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
+                        <Link href='/cart'>
+                          <span className="relative inline-block">
+                            {/* <svg className="w-6 h-6 text-gray-700 fill-current" viewBox="0 0 20 20"><path d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" fill-rule="evenodd"></path></svg> */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-yellow-500 rounded-full">{cartItems.length}</span>
+                          </span>
+                        </Link>
                       </Menu.Button>
                     </div>
                   </div>
-                    <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {cartItems.map((item) => (
-                          <Menu.Item key={item.id}>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700'
-                                )}
-                              >
-                                {item.name} - ${item.price}
-                              </a>
-                            )}
-                          </Menu.Item>
-                        ))}
-                        <Menu.Item onClick={() => checkout(cartItems)}><a href='#' onClick={() => checkout(cartItems)}>CHECKOUT</a></Menu.Item>
-                      </Menu.Items>
-                    </Transition>
                 </Menu>
                 <div className="-mr-2 flex md:hidden">
                   {/* Mobile menu button */}
