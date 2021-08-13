@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
