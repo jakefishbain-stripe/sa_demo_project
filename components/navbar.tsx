@@ -1,14 +1,10 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useContext }from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
-// import { loadStripe } from '@stripe/stripe-js'
-
-// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-
-// import Image from 'next/image'
 import Link from 'next/link'
 
 import AppContext from '../contexts/appContext'
@@ -17,22 +13,6 @@ const navigation = ['Home', 'Shop', 'Sell']
 
 export default function Navbar() {
   const [cartItems, setCartItems] = useContext(AppContext);
-
-  // const checkout = async (items) => {
-  //   const { sessionId } = await fetch('api/checkout/session', {
-  //     method: 'POST',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify(items)
-  //   }).then(res => res.json());
-
-  //   const stripe = await stripePromise;
-
-  //   const { error } = await stripe.redirectToCheckout({
-  //       sessionId
-  //   });
-  // }
 
   return (
     <div>
@@ -56,7 +36,7 @@ export default function Navbar() {
                           <Fragment key={itemIdx}>
                             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                             <Link href='/'>
-                              <a className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                              <a className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
                                 {item}
                               </a>
                             </Link>

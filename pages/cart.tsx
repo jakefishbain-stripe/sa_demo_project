@@ -1,13 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 
 import AppContext from '../contexts/appContext';
+import ElementsCheckout from '../components/elementsCheckout';
+// import ElementsCheckout from '../components/elementsCheckout'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function Cart() {
 	const [cartItems, setCartItems] = useContext(AppContext);
+	const [openModal, setOpenModal] = useState(false)
+
 	let totalPrice = cartItems.reduce(((acc, cv) => +acc + +cv.price), 0);
 
 	const checkout = async () => {
@@ -37,6 +41,7 @@ export default function Cart() {
 
 	return (
 		<div className='container mx-auto px-24'>
+			{/* <ElementsCheckout /> */}
 			<div className="mt-8">
 				<div className="flow-root">
 					<ul role="list" className="divide-y divide-gray-200">
@@ -99,6 +104,17 @@ export default function Cart() {
 						</a>
 					</div> 
 				: null}
+				{cartItems.length > 0 ?
+				<div className="mt-6 flex justify-center text-sm text-center text-gray-500" onClick={() => setOpenModal(true)}>
+					<p>
+						<button
+							type="button"
+							className="text-yellow-500 font-medium hover:text-yellow-600"	
+						>
+							<div>Checkout Using Elements<span aria-hidden="true"> &rarr;</span></div>
+						</button>
+					</p>
+				</div> : null }
 				<div className="mt-6 flex justify-center text-sm text-center text-gray-500">
 					<p>
 						<button
@@ -110,5 +126,8 @@ export default function Cart() {
 					</p>
 				</div>
 			</div>
+			{openModal ? 
+				<ElementsCheckout callback={setOpenModal} />
+			: null}
 		</div>
 )}

@@ -18,9 +18,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 //   },
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    // const { quantity } = req.body;
-    // console.log('REQ BODY! 11', req.body)
-
     let line_items = req.body.map(item => {
         return {
             price_data: {
