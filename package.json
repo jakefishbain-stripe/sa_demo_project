@@ -11,7 +11,8 @@
   "dependencies": {
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
-    "@stripe/stripe-js": "^1.16.0",
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.17.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@types/react": "^17.0.17",
     "faker": "^5.5.3",
