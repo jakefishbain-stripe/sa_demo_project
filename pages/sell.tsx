@@ -3,22 +3,21 @@ import { useEffect } from 'react';
 // import useSWR from 'swr'
 
 export default function Sell() {
-    let circleCommonClasses = 'h-2.5 w-2.5 bg-current rounded-full';
-    const router = useRouter();
+    // const router = useRouter();
 
-    useEffect(()=> {
-        fetch('/api/connect/standard', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: null
-        }).then(res => res.json())
-        .then(res => {
-            console.log('res',res.url)
-            router.push(res.url)
-        })
-    })
+    // useEffect(()=> {
+    //     fetch('/api/connect/standard', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json',
+    //         },
+    //         body: null
+    //     }).then(res => res.json())
+    //     .then(res => {
+    //         console.log('res',res.url)
+    //         router.push(res.url)
+    //     })
+    // })
 
     return(
         <div className='mt-20 w-full'>
