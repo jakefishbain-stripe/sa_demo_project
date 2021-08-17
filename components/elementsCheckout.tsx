@@ -13,7 +13,6 @@ export default function ElementsCheckout(props) {
   const stripe = useStripe();
   const elements = useElements();
 
-  console.log('cartitems is elements checkout', cartItems)
   let amount = cartItems.reduce(((acc, cv) => +acc + +cv.price), 0);
 
   useEffect(() => {
@@ -37,8 +36,7 @@ export default function ElementsCheckout(props) {
 
   const handleSubmit = async e => {
       e.preventDefault();
-      console.log('PI...', paymentIntent)
-      // disable submit button
+      //TODO disable submit button
       await fetch('/api/paymentIntent/update', { 
         method: 'POST',
         headers: {
@@ -65,8 +63,7 @@ export default function ElementsCheckout(props) {
         }
       })
 
-      console.log('PAYLOAD', payload)
-
+      // TODO - error handling
       // if (payload.error) {
       //   setError(`Payment failed ${payload.error.message}`);
       //   setProcessing(false);

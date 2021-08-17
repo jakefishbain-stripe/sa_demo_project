@@ -110,7 +110,7 @@ export default function Navbar() {
                 )}
                 <Link href="/cart">
                   <a className="text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Checkout
+                    Checkout {` (${cartItems.length})`}
                   </a>
                 </Link>
               </div>

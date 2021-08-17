@@ -32,7 +32,6 @@ export default function Cart() {
   }
 
 	const removeFromCart = (idx) => {
-		console.log('in remove...', idx, cartItems)
 		setCartItems(
 			cartItems.filter((_value, index, _arr) => {
 				return idx != index 

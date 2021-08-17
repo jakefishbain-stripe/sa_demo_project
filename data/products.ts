@@ -13,8 +13,6 @@ for(let count = 0; count < 10; count++) {
     color: faker.commerce.color()
   })
 }
-console.log('faker', faker.commerce.productName)
-console.log('products in products.ts', products)
 
 // const products = [
 //     {
