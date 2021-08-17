@@ -45,6 +45,7 @@ import AppContext from '../contexts/appContext'
                 </div>
                     <button
                         type="button"
+                        onTouchStart={() => addToCart(product)}
                         onClick={() => addToCart(product)}
                         className="absolute bottom-12 right-0 -mr-5 inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600">
                             <PlusIconOutline className="h-6 w-6" aria-hidden="true" />
