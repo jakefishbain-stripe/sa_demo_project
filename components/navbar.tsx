@@ -108,9 +108,11 @@ export default function Navbar() {
                     </a>
                   )
                 )}
-                <a href="/cart" className="text-white block px-3 py-2 rounded-md text-base font-medium">
-                  Checkout
-                </a>
+                <Link href="/cart">
+                  <a className="text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Checkout
+                  </a>
+                </Link>
               </div>
             </Disclosure.Panel>
           </>
