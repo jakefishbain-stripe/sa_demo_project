@@ -7,14 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const paymentIntentId = req.body.paymentIntentId
-    delete req.body.paymentIntentId
+    const { id } = req.query;
 
-    const customer = await stripe.customers.create({ ...req.body })
-
-    await stripe.paymentIntents.update(paymentIntentId, {
-        customer: customer.id
-    })
-    res.send(200)
+    const paymentIntent = await stripe.paymentIntents.retrieve(id as string)
+    res.status(200).json({ paymentIntent })
 }
-

@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { useContext, useState, useEffect } from 'react'
+import Router from 'next/router'
 
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
@@ -8,7 +9,6 @@ import AppContext from '../contexts/appContext'
 export default function ElementsCheckout(props) {
   const [cartItems, setCartItems] = useContext(AppContext);
   const [paymentIntent, setPaymentIntent] = useState(null);
-  // const [clientSecret, setClientSecret] = useState(null);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -26,7 +26,6 @@ export default function ElementsCheckout(props) {
     }).then( res => res.json())
     .then(res => {
       setPaymentIntent(res.paymentIntent)
-      // setClientSecret(res.paymentIntent?.clientSecret)
     }); 
   }, [cartItems]);
 
@@ -66,6 +65,8 @@ export default function ElementsCheckout(props) {
         }
       })
 
+      console.log('PAYLOAD', payload)
+
       // if (payload.error) {
       //   setError(`Payment failed ${payload.error.message}`);
       //   setProcessing(false);
@@ -74,8 +75,10 @@ export default function ElementsCheckout(props) {
       //   setProcessing(false);
       //   setSucceeded(true);
       // }
+
       setCartItems([])
       closeAndCallback();
+      Router.push(`/result?session_id=${payload.paymentIntent.id}`)
   }
 
   return (

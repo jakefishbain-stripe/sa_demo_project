@@ -8,6 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
+    console.log('id in checkout [id]', id)
+
     const session = await stripe.checkout.sessions.retrieve(id as string, {
         expand: ['payment_intent']
     })
