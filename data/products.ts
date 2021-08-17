@@ -1,13 +1,13 @@
 const faker = require('faker')
 
 const products = []
-const getImage = () => faker.image.image();
+const getImage = (idx) => `https://loremflickr.com/320/240/item=${idx}`
 
 for(let count = 0; count < 10; count++) {
   products.push({
     id: count + 1,
     name: faker.commerce.productName(),
-    imageSrc: getImage(),
+    imageSrc: getImage(count),
     imageAlt: faker.commerce.productAdjective(),
     price: faker.commerce.price(),
     color: faker.commerce.color()

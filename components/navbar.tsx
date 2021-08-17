@@ -9,7 +9,8 @@ import Link from 'next/link'
 
 import AppContext from '../contexts/appContext'
 
-const navigation = ['Home', 'Shop', 'Sell']
+// 'Home', 
+const navigation = ['shop', 'sell']
 
 export default function Navbar() {
   const [cartItems, setCartItems] = useContext(AppContext);
@@ -32,26 +33,14 @@ export default function Navbar() {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
-                        itemIdx === 0 ? (
-                          <Fragment key={itemIdx}>
-                            {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                            <Link href='/'>
-                              <a className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
-                                {item}
-                              </a>
-                            </Link>
-                          </Fragment>
-                        ) : (
-                          <Link href={item.toLowerCase()}>
+                          <Link href={item} key={item}>
                             <a
-                              key={item}
-                              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                              className="capitalize text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
                               {item}
                             </a>
                           </Link>
-                        )
-                      )}
+                        )}
                     </div>
                   </div>
                 </div>
@@ -91,22 +80,13 @@ export default function Navbar() {
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {navigation.map((item, itemIdx) =>
-                  itemIdx === 0 ? (
-                    <Fragment key={itemIdx}>
-                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        {item}
-                      </a>
-                    </Fragment>
-                  ) : (
+                  <Link href={item} key={item}>
                     <a
-                      key={item}
-                      href={item.toLowerCase()}
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      className="capitalize text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     >
                       {item}
                     </a>
-                  )
+                  </Link>
                 )}
                 <Link href="/cart">
                   <a className="text-white block px-3 py-2 rounded-md text-base font-medium">
