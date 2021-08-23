@@ -10,7 +10,7 @@ import Link from 'next/link'
 import AppContext from '../contexts/appContext'
 
 // 'Home', 
-const navigation = ['shop', 'sell']
+const navigation = ['shop', 'sell', 'seller portal']
 
 export default function Navbar() {
   const [cartItems, setCartItems] = useContext(AppContext);
@@ -33,7 +33,7 @@ export default function Navbar() {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
-                          <Link href={item} key={item}>
+                          <Link href={item.replace(/\s/g, '')} key={item}>
                             <a
                               className="capitalize text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
@@ -80,7 +80,7 @@ export default function Navbar() {
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {navigation.map((item, itemIdx) =>
-                  <Link href={item} key={item}>
+                  <Link href={item.replace(/\s/g, '')} key={item}>
                     <a
                       className="capitalize text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     >

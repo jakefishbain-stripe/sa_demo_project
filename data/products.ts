@@ -10,7 +10,8 @@ for(let count = 0; count < 10; count++) {
     imageSrc: getImage(count),
     imageAlt: faker.commerce.productAdjective(),
     price: faker.commerce.price(),
-    color: faker.commerce.color()
+    color: faker.commerce.color(),
+    accountId: 123
   })
 }
 

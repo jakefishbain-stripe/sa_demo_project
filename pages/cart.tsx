@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from 'react'
@@ -5,7 +6,8 @@ import { loadStripe } from '@stripe/stripe-js'
 
 import AppContext from '../contexts/appContext';
 import ElementsCheckout from '../components/elementsCheckout';
-// import ElementsCheckout from '../components/elementsCheckout'
+
+import Link from 'next/link'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -116,14 +118,14 @@ export default function Cart() {
 					</p>
 				</div> : null }
 				<div className="mt-6 flex justify-center text-sm text-center text-gray-500">
-					<p>
+					<Link href='/shop'>
 						<button
 							type="button"
 							className="text-yellow-500 font-medium hover:text-yellow-600"	
 						>
-							<a href='/shop'>Continue Shopping<span aria-hidden="true"> &rarr;</span></a>
+							<a>Continue Shopping<span aria-hidden="true"> &rarr;</span></a>
 						</button>
-					</p>
+					</Link>
 				</div>
 			</div>
 			{openModal ? 
